@@ -10,11 +10,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  
-<div class="container p-3 my-3 bg-dark text-white">
-  <h1> Flask test page</h1>
-  <p> hostname: <b> {{ myhostname }} </b></p>
-  <p> host IP : <b> {{ ip }} </b></p>
+
+<div class="container-fluid">
+  <h2>Flask test page</h2>
+  <p> hostname: <code> {{ myhostname }} </code></p>
+  <p> host IP    : <code> {{ ip }} </code></p>
+  <img src={{ pic }}  class="img-rounded" alt="Cinque Terre" width="304" height="236">
 </div>
 
 </body>
