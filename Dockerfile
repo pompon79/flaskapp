@@ -1,5 +1,5 @@
 #FROM python:3.15.2-alpine
-FROM python:3.15.2-alpine
+FROM alpine:3.15.2
 RUN mkdir /app
 WORKDIR /app
 ADD requirements.txt /app
