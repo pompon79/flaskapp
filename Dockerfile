@@ -1,5 +1,5 @@
 #FROM python:3.15.2-alpine
-FROM alpine:3.15.2
+FROM alpine:3.15.3
 # 
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
