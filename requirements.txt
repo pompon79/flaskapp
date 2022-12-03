@@ -10,3 +10,5 @@ requests==2.27.1
 urllib3==1.26.5
 Werkzeug==1.0.1
 gunicorn>=19,<20
+prometheus-client==0.15.0
+prometheus-flask-exporter==0.21.0
