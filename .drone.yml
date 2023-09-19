@@ -1,0 +1,17 @@
+---
+kind: pipeline
+name: build-docker-image
+
+steps:
+  - name: build
+    image: docker
+    commands:
+      - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push flaskapp:$DRONE_BUILD_NUMBER
+    when:
+      event:
+        - push
+        - tag
+
+  # You can add additional steps here, such as testing or deploying the image.
