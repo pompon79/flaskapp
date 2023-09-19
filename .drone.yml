@@ -1,10 +1,10 @@
 ---
 kind: pipeline
-name: build-docker-image
 type: exec
+name: default
+
+
 steps:
-  - name: build
-    commands:
-      - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - docker push flaskapp:$DRONE_BUILD_NUMBER
+- name: greeting
+  commands:
+  - echo hello world
