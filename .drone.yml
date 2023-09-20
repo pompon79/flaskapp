@@ -19,7 +19,7 @@ steps:
   - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
   - echo $USERNAME
   - docker login -u $USERNAME -p $PASSWORD
-  - docker push flaskapp:$DRONE_BUILD_NUMBER
+  - docker push petercloudnet/flaskapp:$DRONE_BUILD_NUMBER
 
 services:
 - name: docker
