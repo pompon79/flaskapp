@@ -1,20 +1,25 @@
 ---
 kind: pipeline
-type: docker
-name: Build docker image
+name: default
 
 steps:
-  - name: Build
-    image: alpinelinux/docker-cli
-    volumes:
-    - name: docker_sock
-      path: /var/run/docker.sock
-    commands: 
-    - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker push flaskapp:$DRONE_BUILD_NUMBER
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 5 # give docker enough time to start
+  - docker ps -a
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 volumes:
-- name: docker_sock
-  host:
-    path: /var/run/docker.sock
+- name: dockersock
+  temp: {}
