@@ -11,6 +11,9 @@ steps:
   commands:
   - sleep 5 # give docker enough time to start
   - docker ps -a
+  - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push flaskapp:$DRONE_BUILD_NUMBER
 
 services:
 - name: docker
