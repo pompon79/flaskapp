@@ -1,21 +1,20 @@
 ---
 kind: pipeline
 type: docker
-name: en
+name: Build docker image
 
 steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo hello world
+  - name: Build
+    image: alpinelinux/docker-cli
+    volumes:
+    - name: docker_sock
+      path: /var/run/docker.sock
+    commands: 
+    - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker push flaskapp:$DRONE_BUILD_NUMBER
 
----
-kind: pipeline
-type: docker
-name: fr
-
-steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo bonjour monde
+volumes:
+- name: docker_sock
+  host:
+    path: /var/run/docker.sock
