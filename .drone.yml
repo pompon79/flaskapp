@@ -5,6 +5,11 @@ name: default
 steps:
 - name: test
   image: docker:dind
+  environment:
+    USERNAME:
+      from_secret: DOCKER_USERNAME
+    PASSWORD:
+      from_secret: DOCKER_PASSWORD
   volumes:
   - name: dockersock
     path: /var/run
@@ -12,8 +17,8 @@ steps:
   - sleep 5 # give docker enough time to start
   - docker ps -a
   - docker build -t flaskapp:$DRONE_BUILD_NUMBER .
-  - echo $DOCKER_USERNAME
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - echo USERNAME
+  - docker login -u USERNAME -p PASSWORD
   - docker push flaskapp:$DRONE_BUILD_NUMBER
 
 services:
